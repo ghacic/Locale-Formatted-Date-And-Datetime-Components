@@ -1,16 +1,17 @@
 /*
     Created by: Greg Hacic
-    Last Update: 11 August 2015 by Greg Hacic
+    Last Update: 17 September 2022 by Greg Hacic
     Questions?: greg@interactiveties.com
     
     NOTES:
-        - tests for localeFormattedDate.class (100.00% coverage)
+        - tests for localeFormattedDate.cls (100.00% coverage)
 */
 @isTest
 private class localeFormattedDateTest {
     
     //English (United States)
-    static testMethod void en_US_Test() {
+    @isTest //defines method for use during testing only
+    static void en_US_Test() {
         //BEGIN: perform some setup steps...
         UserRole role = [SELECT Id, Name FROM UserRole LIMIT 1]; //grab a UserRole entry
         Profile p = [SELECT Id FROM Profile LIMIT 1]; //grab a profile for a new testing user
@@ -30,7 +31,8 @@ private class localeFormattedDateTest {
     }
     
     //Belarusian (Belarus)
-    static testMethod void be_BY_Test() {
+    @isTest //defines method for use during testing only
+    static void be_BY_Test() {
         //BEGIN: perform some setup steps...
         UserRole role = [SELECT Id, Name FROM UserRole LIMIT 1]; //grab a UserRole entry
         Profile p = [SELECT Id FROM Profile LIMIT 1]; //grab a profile for a new testing user
@@ -44,13 +46,14 @@ private class localeFormattedDateTest {
             localeFormattedDate controller = new localeFormattedDate(); //constructor for our Apex class
             controller.dateValue = Date.valueOf('2005-03-07'); //set the dateValue variable to 7 March 2005
             String methodResult = controller.getFormattedDate(); //call the getFormattedDate method
-            System.assertEquals('7.3.2005', methodResult); //validate the results
+            System.assertEquals('7.03.2005', methodResult); //validate the results
             Test.stopTest(); //stop testing context
         }
     }
     
     //Chinese (Taiwan)
-    static testMethod void zh_TW_Test() {
+    @isTest //defines method for use during testing only
+    static void zh_TW_Test() {
         //BEGIN: perform some setup steps...
         UserRole role = [SELECT Id, Name FROM UserRole LIMIT 1]; //grab a UserRole entry
         Profile p = [SELECT Id FROM Profile LIMIT 1]; //grab a profile for a new testing user
