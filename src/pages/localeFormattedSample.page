@@ -1,21 +1,161 @@
-<apex:page readonly="true" showHeader="true" sidebar="true">
+<apex:page applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" lightningStyleSheets="true" showHeader="false">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
 <!--
     Created by: Greg Hacic
-    Last Update: 17 August 2015 by Greg Hacic
+    Last Update: 16 Sepetember 2022 by Greg Hacic
     Questions?: greg@interactiveties.com
     
     NOTES:
         - working example on how to implement the localeFormattedDate and localeFormattedDatetime Visualforce components
 -->
-    <apex:sectionHeader title="Formatting  Values" subtitle="Date & Datetime"></apex:sectionHeader>
-    <apex:pageMessages ></apex:pageMessages>
-    <div class="filterOverview">This is a working example regarding how to implement the localeFormattedDate and localeFormattedDatetime Visualforce components</div>
-    <apex:pageBlock title="Date">
-        <div>Unformatted: {!Today()}</div>
-        <div>Formatted with localeFormattedDate: <c:localeFormattedDate dateProvided="{!Today()}"></c:localeFormattedDate></div>
-    </apex:pageBlock>
-    <apex:pageBlock title="Datetime">
-        <div>Unformatted: {!Now()}</div>
-        <div>Formatted with localeFormattedDatetime: <c:localeFormattedDatetime datetimeProvided="{!Now()}"></c:localeFormattedDatetime></div>
-    </apex:pageBlock>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Locale Formatted Datetime &amp; Date</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <apex:slds /><!-- Salesforce Lightning Design System Stylesheet -->
+    <style type="text/css">
+    
+    </style>
+    <script language="JavaScript" type="text/javascript">
+    </script>
+</head>
+<body>
+    <apex:form>
+        <div class="slds-scope">
+            <div class="slds-box">
+                <div class="slds-page-header">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-opportunity" title="Date & Datetime">
+                                <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#settings')}" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Date & Datetime">Date &amp; Datetime</h1>
+                            <p class="slds-text-body_small slds-line-height_reset">Formatting  Values</p>
+                        </div>
+                    </div>
+                </div>
+                <apex:pageMessages></apex:pageMessages>
+                <div class="slds-m-bottom_small slds-m-top_small">
+                    <div class="slds-box">
+                        <p>This is a working example regarding how to implement the localeFormattedDate and localeFormattedDatetime Visualforce components</p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-standard-date-input" title="date">
+                                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#date_input')}" />
+                                            </svg>
+                                            <span class="slds-assistive-text">date</span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <a href="#" class="slds-card__header-link slds-truncate" title="Date">
+                                                <span>Date</span>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body">
+                                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid" aria-label="Datetime Example">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Unformatted">Unformatted</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Formatted with localeFormattedDatetime">Formatted with localeFormattedDate</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Locale">Locale</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="slds-hint-parent">
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="{!Today()}">{!Today()}</div>
+                                            </th>
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title=""><c:localeFormattedDate dateProvided="{!Today()}"></c:localeFormattedDate></div>
+                                            </td>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="{!TEXT($User.LocaleSidKey)}">{!TEXT($User.LocaleSidKey)}</div>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="slds-col">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-standard-date-time" title="datetime">
+                                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#date_time')}" />
+                                            </svg>
+                                            <span class="slds-assistive-text">datetime</span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <a href="#" class="slds-card__header-link slds-truncate" title="Datetime">
+                                                <span>Datetime</span>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body">
+                                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid" aria-label="Datetime Example">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Unformatted">Unformatted</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Formatted with localeFormattedDatetime">Formatted with localeFormattedDatetime</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate" title="Time Zone">Time Zone</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="slds-hint-parent">
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="{!Now()}">{!Now()}</div>
+                                            </th>
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title=""><c:localeFormattedDatetime datetimeProvided="{!Now()}"></c:localeFormattedDatetime></div>
+                                            </td>
+                                            <th scope="row">
+                                                <div class="slds-truncate" title="{!TEXT($User.TimeZoneSidKey)}">{!TEXT($User.TimeZoneSidKey)}</div>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+</body>
+</html>
 </apex:page>
